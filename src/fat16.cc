@@ -43,9 +43,9 @@ void Fat16::listRootDirFiles() {
         }
     }
 
-    for (int i = 0; i < _fats.at(0).size(); ++i){
-        std::cout << (int)_fats.at(0).at(i) << " ";
-    }
+    //for (int i = 0; i < _fats.at(0).size(); ++i){
+    //    std::cout << (int)_fats.at(0).at(i) << " ";
+    //}
 }
 
 int Fat16::_getFreeClusterNumber() {
@@ -162,11 +162,10 @@ std::string Fat16::extractContents(Directory dir, std::string path) {
         fatIdx *= 2;
         clusterNumber = util::toShort(_fats.at(0).at(fatIdx), _fats.at(0).at(fatIdx + 1));
         blockNumber = dataStart + clusterNumber;
-        std::cout << blockNumber << std::endl;
     }
 
     std::ofstream os(path.c_str(), std::ios::out | std::ios::binary);
-    os << file.data();
+    os.write((char*) file.data(), file.size());
     os.close();
     return path;
 }

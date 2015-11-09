@@ -13,7 +13,6 @@ int main(int argc, char** argv){
 
     for (int i = 0; i < dirs.size(); ++i) {
         if (dirs.at(i).isUsed()) {
-            std::cout << "i'm " << dirs.at(i).getName() << std::endl;
             fat.extractContents(dirs.at(i));
         }
         
